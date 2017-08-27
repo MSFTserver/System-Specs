@@ -38,32 +38,33 @@ echo %Logoline6%
 echo %Logoline7%
 echo %Logoline8%
 echo Loading Memory Bank 0 Data ...
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get banklabel /value') do (
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 0%%'" get tag /value') do (
 SET ramb0label=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get Manufacturer /value') do SET ramb0manufacturer=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get speed /value') do SET ramb0speed=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get serialnumber /value') do SET ramb0serialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 0%%'" get Manufacturer /value') do SET ramb0manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 0%%'" get speed /value') do SET ramb0speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 0%%'" get serialnumber /value') do SET ramb0serialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 0%%'" get Manufacturer /value') do SET ramb0manufacturer=%%A
 )
 echo Loading Memory Bank 1 Data ...
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get banklabel /value') do (
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 1%%'" get tag /value') do (
 SET ramb1label=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get Manufacturer /value') do SET ramb1manufacturer=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get speed /value') do SET ramb1speed=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get serialnumber /value') do SET ramb1serialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 1%%'" get Manufacturer /value') do SET ramb1manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 1%%'" get speed /value') do SET ramb1speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 1%%'" get serialnumber /value') do SET ramb1serialnumber=%%A
 )
 echo Loading Memory Bank 2 Data ...
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get banklabel /value') do (
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 2%%'" get tag /value') do (
 SET ramb2label=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get Manufacturer /value') do SET ramb2manufacturer=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get speed /value') do SET ramb2speed=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get serialnumber /value') do SET ramb2serialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 2%%'" get Manufacturer /value') do SET ramb2manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 2%%'" get speed /value') do SET ramb2speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 2%%'" get serialnumber /value') do SET ramb2serialnumber=%%A
 )
 echo Loading Memory Bank 3 Data ...
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get banklabel /value') do (
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 3%%'" get tag /value') do (
 SET ramb3label=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get Manufacturer /value') do SET ramb3manufacturer=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get speed /value') do SET ramb3speed=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get serialnumber /value') do SET ramb3serialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 3%%'" get Manufacturer /value') do SET ramb3manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 3%%'" get speed /value') do SET ramb3speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "tag like 'Physical Memory 3%%'" get serialnumber /value') do SET ramb3serialnumber=%%A
 )
 ping localhost -n 3 >nul
 cls 
