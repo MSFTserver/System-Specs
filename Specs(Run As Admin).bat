@@ -25,7 +25,46 @@ echo Loading Bios Data ...
 FOR /F "tokens=2 delims='='" %%A in ('wmic BIOS Get Name /value') do SET biosname=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic BIOS Get Manufacturer /value') do SET biosmanufacturer=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic BIOS Get Version /value') do SET biosversion=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic Bios Get SerialNumber /value') do SET csserialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic Bios Get SerialNumber /value') do SET biosserialnumber=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic Bios Get ReleaseDate /value') do SET biosdt=%%A
+ping localhost -n 3 >nul
+cls 
+echo %Logoline1%
+echo %Logoline2%
+echo %Logoline3%
+echo %Logoline4%
+echo %Logoline5%
+echo %Logoline6%
+echo %Logoline7%
+echo %Logoline8%
+echo Loading Memory Bank 0 Data ...
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get banklabel /value') do (
+SET ramb0label=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get Manufacturer /value') do SET ramb0manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get speed /value') do SET ramb0speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 0%%'" get serialnumber /value') do SET ramb0serialnumber=%%A
+)
+echo Loading Memory Bank 1 Data ...
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get banklabel /value') do (
+SET ramb1label=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get Manufacturer /value') do SET ramb1manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get speed /value') do SET ramb1speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 1%%'" get serialnumber /value') do SET ramb1serialnumber=%%A
+)
+echo Loading Memory Bank 2 Data ...
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get banklabel /value') do (
+SET ramb2label=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get Manufacturer /value') do SET ramb2manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get speed /value') do SET ramb2speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 2%%'" get serialnumber /value') do SET ramb2serialnumber=%%A
+)
+echo Loading Memory Bank 3 Data ...
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get banklabel /value') do (
+SET ramb3label=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get Manufacturer /value') do SET ramb3manufacturer=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get speed /value') do SET ramb3speed=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip WHERE "banklabel like 'BANK 3%%'" get serialnumber /value') do SET ramb3serialnumber=%%A
+)
 ping localhost -n 3 >nul
 cls 
 echo %Logoline1%
@@ -40,10 +79,7 @@ echo Loading System Data ...
 FOR /F "tokens=2 delims='='" %%A in ('wmic ComputerSystem Get Manufacturer /value') do SET csmanufacturer=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic ComputerSystem Get Model /value') do SET csmodel=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic cpu Get loadpercentage /value') do SET cpuload=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip Get Manufacturer /value') do SET memmanufacturer=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip Get speed /value') do SET memspeed=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip Get installdate /value') do SET ramdt=%%A
-FOR /F "tokens=2 delims='='" %%A in ('wmic memorychip Get serialnumber /value') do SET ramserial=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic cpu Get NumberOfCores /value') do SET cpuphysicalcores=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic os get Name /value') do SET osname=%%A
 FOR /F "tokens=1 delims='|'" %%A in ("%osname%") do SET osname=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic os Get Version /value') do SET osversion=%%A
@@ -72,6 +108,8 @@ FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get Driver
 FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get InstallDate /value') do SET videocardinstalldt=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get DriverDate /value') do SET videocarddt=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get VideoMemoryType /value') do SET videocardramtype=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get CurrentVerticalResolution /value') do SET videocardresolution1=%%A
+FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get CurrentHorizontalResolution /value') do SET videocardresolution2=%%A
 FOR /F "tokens=2 delims='='" %%A in ('wmic path win32_VideoController get AdapterRAM /value') do SET videocardram=%%A
 ping localhost -n 3 >nul
 cls
@@ -114,9 +152,9 @@ set "osinstalldate=%osMM%/%osDD%/%osYYYY%_%osHH%:%osMin%:%osSec%"
 set "bootYY=%bootdt:~2,2%" & set "bootYYYY=%bootdt:~0,4%" & set "bootMM=%bootdt:~4,2%" & set "bootDD=%bootdt:~6,2%"
 set "bootHH=%bootdt:~8,2%" & set "bootMin=%bootdt:~10,2%" & set "bootSec=%bootdt:~12,2%"
 set "osboottime=%bootMM%/%bootDD%/%bootYYYY%_%bootHH%:%bootMin%:%bootSec%"
-set "ramYY=%ramdt:~2,2%" & set "ramYYYY=%ramdt:~0,4%" & set "ramMM=%ramdt:~4,2%" & set "ramDD=%ramdt:~6,2%"
-set "ramHH=%ramdt:~8,2%" & set "ramMin=%ramdt:~10,2%" & set "ramSec=%ramdt:~12,2%"
-set "meminstall=%ramMM%/%ramDD%/%ramYYYY%_%ramHH%:%ramMin%:%ramSec%"
+set "biosYY=%biosdt:~2,2%" & set "biosYYYY=%biosdt:~0,4%" & set "biosMM=%biosdt:~4,2%" & set "biosDD=%biosdt:~6,2%"
+set "biosHH=%biosdt:~8,2%" & set "biosMin=%biosdt:~10,2%" & set "biosSec=%biosdt:~12,2%"
+set "biosreleasedate=%biosMM%/%biosDD%/%biosYYYY%_%biosHH%:%biosMin%:%biosSec%"
 if %videocardramtype%==1 set videocardramtype=Other
 if %videocardramtype%==2 set videocardramtype=Unkown
 if %videocardramtype%==3 set videocardramtype=VRAM
@@ -131,7 +169,6 @@ if %videocardramtype%==11 set videocardramtype=3DRAM
 if %videocardramtype%==12 set videocardramtype=SDRAM
 if %videocardramtype%==13 set videocardramtype=SGRAM
 if %videocardinstalldate%==//_:: set videocardinstalldate=Null
-if %meminstall%==//_:: set meminstall=Null
 set "DRIVELETTERSFREE=Z Y X W V U T S R Q P O N M L K J I H G F E D C B A "
 for /f "skip=1 tokens=1,2 delims=: " %%a in ('wmic logicaldisk get deviceid^') do (
    set "DRIVELETTERSUSED=!DRIVELETTERSUSED!"%%a:\", %%b"
@@ -160,10 +197,9 @@ echo %Logoline6%
 echo %Logoline7%
 echo %Logoline8%
 echo . %logg%
-echo                   System Info: %logg%
+echo                   System Info %logg%
 echo                       Model: %csmodel% %logg%
 echo                       Manufacturer: %csmanufacturer% %logg%
-echo                       Serial Number: %csserialnumber% %logg%
 echo . %logg%
 echo                       Video Card Name: %videocard% %logg%
 echo                       Video Card Processor: %videocardprocessor% %logg%
@@ -173,10 +209,13 @@ echo                       Video Card Driver Installed: %videocarddriverdate% %l
 echo                       Video Card Ram Type: %videocardramtype% %logg%
 echo                       Video Card Ram: %videocardtotalram% GB %logg%
 echo                       Video Card Refresh Rate: %videocardrefreshrate% FPS %logg%
+echo                       Video Card Resolution: %videocardresolution2% x %videocardresolution1% %logg%
 echo . %logg%
 echo                       Bios Manufacturer: %biosmanufacturer% %logg%
 echo                       Bios Name: %biosname% %logg%
 echo                       Bios Version: %biosversion% %logg%
+echo                       Serial Number: %biosserialnumber% %logg%
+echo                       Bios Release Date: %biosreleasedate% %logg%
 echo . %logg%
 echo                       PC Name: %COMPUTERNAME% %logg%
 echo                       OS Name: %osname% %logg%
@@ -190,7 +229,8 @@ echo                       OS Directory: "%osdrive%\" %logg%
 echo . %logg%
 echo                       CPU Type: %PROCESSOR_IDENTIFIER% %logg%
 echo                       CPU Revision: %PROCESSOR_REVISION% %logg%
-echo                       CPU Physical Cores: %NUMBER_OF_PROCESSORS% %logg%
+echo                       CPU Logical Cores: %NUMBER_OF_PROCESSORS% %logg%
+echo                       CPU Physical Cores: %cpuphysicalcores% %logg%
 echo                       CPU Model Number: %PROCESSOR_LEVEL% %logg%
 echo                       CPU Architecture: %PROCESSOR_ARCHITECTURE% %logg%
 echo                       CPU Processes: %cpuprocesses% %logg%
@@ -198,10 +238,30 @@ echo                       CPU Load: %cpuload%%% %logg%
 echo                       CPU Temp C: %cputempc:~0,-3% %logg%
 echo                       CPU Temp F: %cputempf% %logg%
 echo . %logg%
-echo                       Memory Manufacturer: %memmanufacturer%
-echo                       Memory Serial Number: %ramserial%
-echo                       Memory Install Date: %meminstall%
-echo                       Memory Speed: %memspeed%
+if defined ramb0label (
+echo                       Memory BANK 0 %logg%
+echo                           Manufacturer: %ramb0manufacturer% %logg%
+echo                           Serial Number: %ramb0serialnumber% %logg%
+echo                           Speed: %ramb0speed% %logg%
+)
+if defined ramb1label (
+echo                       Memory BANK 1 %logg%
+echo                           Manufacturer: %ramb1manufacturer% %logg%
+echo                           Serial Number: %ramb1serialnumber% %logg%
+echo                           Speed: %ramb1speed% %logg%
+)
+if defined ramb2label (
+echo                       Memory BANK 2 %logg%
+echo                           Manufacturer: %ramb2manufacturer% %logg%
+echo                           Serial Number: %ramb2serialnumber% %logg%
+echo                           Speed: %ramb2speed% %logg%
+)
+if defined ramb3label (
+echo                       Memory BANK 3 %logg%
+echo                           Manufacturer: %ramb3manufacturer% %logg%
+echo                           Serial Number: %ramb3serialnumber% %logg%
+echo                           Speed: %ramb3speed% %logg%
+)
 echo                       Memory Total: %totalMem% MB %logg%
 echo                       Memory  Used: %usedMem% MB %logg%
 echo                       Memory  Free: %availableMem% MB %logg%
